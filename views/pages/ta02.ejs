@@ -17,8 +17,27 @@
     </div>
     <div class="container">
 
+      <form action="/ta02/addUser" method="POST">
+        <input type="text" name="user" id="user">
+        <button type="submit">Create</button>
+      </form>
+
+
+      <% if(users){%>
+        <% for (let user of users) { %> 
+          <h1><%= user %></h1>
+          <%}%>
+        <%}%>
+
     </div>
 
+
+    <form action="/ta02/removeUser" method="POST">
+      <input type="text" name="user" id="user">
+      <button type="submit">Remove</button>
+    </form>
+
+   
 
 </body>
 
