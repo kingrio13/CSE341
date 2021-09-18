@@ -2,7 +2,7 @@ const path = require('path');
 
 const express = require('express');
 
-const rootDir = require('../proove02util/path');
+// const rootDir = require('../proove02util/path');
 const { route } = require('../routes/ta02');
 
 const router = express.Router();
@@ -12,11 +12,15 @@ const router = express.Router();
 const products =[{}]; //this is for the objects
 
 
+
+
+
+
 // /admin/add-product => GET
 router.get('/add-product', (req, res, next) => {
-  res.render('add-product', {
+  res.render('pages/p2add-product', {
     pageTitle: 'Add Product',
-    path: '/admin/add-product',
+    path: '/admin/p2add-product',
   
     activeAddProduct: true
   });
@@ -30,25 +34,26 @@ router.post('/add-product', (req, res, next) => {
   const desc=req.body.description;
 
   const prodList={'id':Date.now(), 'title':title, 'price':price, 'description':desc};
-
     products.push(prodList);
-
-  res.redirect('/');
+  res.redirect('/prove02');
 });
 
 
 // /admin/add-product => GET
 router.get('/delete-product', (req, res, next) => {
   //console.log(products);
-  res.render('delete-product', {
+  res.render('pages/p2delete-product', {
     prods: products,
     pageTitle: 'Delete Product',
-    path: '/admin/delete-product',
+    path: '/admin/p2delete-product',
     activeAddProduct: true
 
     
   });
 });
+
+
+
 
 
 
@@ -73,7 +78,9 @@ router.post('/delete-product', (req, res, next) => {
 
   // products.splice(removeIndex, 1);
   //res.redirect('/delete-product');
- res.redirect('/');//this is working, it weird
+  res.redirect('/prove02');
+
+ 
 
 
 });

@@ -2,14 +2,16 @@ const path = require('path');
 
 const express = require('express');
 
-const rootDir = require('../proove02util/path');
+// const rootDir = require('../proove02util/path');
 const adminData = require('./admin');
 
 const router = express.Router();
 
+
+
 router.get('/', (req, res, next) => {
   const products = adminData.products;
-  res.render('shop', {
+  res.render('pages/shop', {
     prods: products,
     pageTitle: 'Shop',
     path: '/',
@@ -19,4 +21,7 @@ router.get('/', (req, res, next) => {
   });
 });
 
+
 module.exports = router;
+
+

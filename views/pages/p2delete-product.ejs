@@ -1,10 +1,10 @@
-<%- include('includes/head.ejs') %>
+<% include ../includes/p2head.ejs %>
     <link rel="stylesheet" href="/css/forms.css">
     <link rel="stylesheet" href="/css/product.css">
 </head>
 
 <body>
-   <%- include('includes/navigation.ejs') %>
+    <% include ../includes/p2navigation.ejs %>
 
    <main>
     <% if (prods.length > 0) { %>
@@ -19,7 +19,7 @@
                 <% if(JSON.stringify(product).length >3) {%>
             <article class="card product-item">
                 <div class="delete__actions">
-                    <form action="/admin/delete-product" method="POST">
+                    <form action="/prove02/admin/delete-product" method="POST">
                         <!-- <button type="submit" id="deleteProd" name="deleteProd" value="eja x ">Delete</button> -->
                         <button type="submit" id="deleteProd" name="deleteProd" value="<%= product.id %>">Delete</button>
                     </form>
@@ -37,7 +37,10 @@
                         alt="A Book">
                 </div>
                 <div class="card__content">
-                    <h2 class="product__price"><%= product.price %></h2>
+                    <h2 class="product__price"> <% if(product.price){ %>
+                        $<%= product.price %>
+                    <% } %>
+</h2>
                     <p class="product__description"><%= product.description %></p>
                 </div>
               
@@ -55,4 +58,4 @@
 </main>
 
 
-<%- include('includes/end.ejs') %>
+<% include ../includes/p2end.ejs %>

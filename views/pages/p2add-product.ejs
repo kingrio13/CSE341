@@ -1,13 +1,13 @@
-<%- include('includes/head.ejs') %>
-    <link rel="stylesheet" href="/css/forms.css">
-    <link rel="stylesheet" href="/css/product.css">
+<% include ../includes/p2head.ejs %>
+    <link rel="stylesheet" href="/stylesheets/p2forms.css">
+    <link rel="stylesheet" href="/stylesheets/p2product.css">
 </head>
 
 <body>
-   <%- include('includes/navigation.ejs') %>
+    <% include ../includes/p2navigation.ejs %>
 
     <main>
-        <form class="product-form" action="/admin/add-product" method="POST">
+        <form class="product-form" action="/prove02/admin/add-product" method="POST">
             <div class="form-control">
                 <label for="title">Title</label>
                 <input type="text" name="title" id="title">
@@ -32,4 +32,4 @@
             <button class="btn" type="submit">Add Product</button>
         </form>
     </main>
-<%- include('includes/end.ejs') %>
+    <% include ../includes/p2end.ejs %>

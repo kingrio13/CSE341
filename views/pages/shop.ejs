@@ -1,9 +1,13 @@
-<%- include('includes/head.ejs') %>
-    <link rel="stylesheet" href="/css/product.css">
+
+
+
+<% include ../includes/p2head.ejs %>
+    <link rel="stylesheet" href="/stylesheets/product.css">
 </head>
 
 <body>
-    <%- include('includes/navigation.ejs') %>
+
+    <% include ../includes/p2navigation.ejs %>
 
     <main>
       
@@ -29,7 +33,12 @@
                                 alt="A Book">
                         </div>
                         <div class="card__content">
-                            <h2 class="product__price"><%= product.price %></h2>
+                            <h2 class="product__price">
+                                <% if(product.price){ %>
+                                    $<%= product.price %>
+                                <% } %>
+
+                                </h2>
                             <p class="product__description"><%= product.description %></p>
                         </div>
                         <div class="card__actions">
@@ -43,4 +52,4 @@
             <h1>No Products Found!</h1>
         <% } %>
     </main>
-<%- include('includes/end.ejs') %>
+    <% include ../includes/p2end.ejs %>
