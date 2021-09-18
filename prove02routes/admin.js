@@ -63,7 +63,7 @@ router.post('/delete-product', (req, res, next) => {
 
   for(prod in products){
     if(removeIndex==products[prod].id){
-      console.log("nahanap ko na on Index", prod);
+      // console.log("nahanap ko na on Index", prod);
       
       products.splice(prod,1);
       
