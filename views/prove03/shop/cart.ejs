@@ -5,10 +5,11 @@
         <%- include('../includes/navigation.ejs') %>
         <main>
             <% if (products.length > 0) { %>
-                <ul>
+                <ul class="cart-item">
                     <% products.forEach(p => { %>
                         <li>
-                            <p><%= p.productData.title %> (<%= p.qty %>)</p>
+                            <img src="<%= p.productData.imageUrl %>" alt="<%= p.productData.title %>" width="100px">
+                            <p> <%= p.productData.title %> (<%= p.qty %>)</p>
                             <form action="/proveactivities/prove03/cart-delete-item" method="POST">
                                 <input type="hidden" value="<%= p.productData.id %>" name="productId">
                                 <button class="btn" type="submit">Delete</button>

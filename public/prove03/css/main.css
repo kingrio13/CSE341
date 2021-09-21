@@ -65,6 +65,22 @@ display: block;
   padding: 0;
 }
 
+
+ul.cart-item{
+list-style: none;
+}
+
+ul.cart-item li{
+  display: grid;
+  padding-bottom: 3em;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: 1fr 1fr 1fr;
+  max-width: 800px;
+  margin: auto;
+
+}
+
 .main-header__item a {
   text-decoration: none;
   color: white;
