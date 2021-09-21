@@ -19,7 +19,7 @@
                 <% if(JSON.stringify(product).length >3) {%>
             <article class="card product-item">
                 <div class="delete__actions">
-                    <form action="/prove02/admin/delete-product" method="POST">
+                    <form action="/proveactivities/prove02/admin/delete-product" method="POST">
                         <!-- <button type="submit" id="deleteProd" name="deleteProd" value="eja x ">Delete</button> -->
                         <button type="submit" id="deleteProd" name="deleteProd" value="<%= product.id %>">Delete</button>
                     </form>

@@ -3,6 +3,21 @@
 const express = require('express');
 const router = express.Router();
 
+const bodyParser = require('body-parser');
+
+
+router.use(bodyParser({ extended: false }));
+
+router.get('/', (req, res, next) => {
+  res.render('pages/ta02', {
+    title: 'Team Activity 02 by',
+    path: 'ta02', // For pug, EJS
+    users:userList,
+    activeTA03: true, // For HBS
+    contentCSS: true, // For HBS
+  });
+});
+
 
 
 
@@ -10,10 +25,10 @@ const userList= ['rio', 'sam', 'zarry', 'galvez'];
 
 
 router.post('/addUser', (req, res, next) => {
-//console.log(req.body.user);
+
 const users=req.body.user;
 userList.push(users);
-res.redirect('/ta02');
+res.redirect('/teamactivities/ta02');
 });
 
 router.post('/removeUser', (req, res, next) => {
@@ -31,28 +46,10 @@ router.post('/removeUser', (req, res, next) => {
   }
 
 
-  res.redirect('/ta02');
+  res.redirect('/teamactivities/ta02');
   });
   
   
-
-
-
-
-router.get('/', (req, res, next) => {
-  res.render('pages/ta02', {
-    title: 'Team Activity 02 by',
-    path: 'ta02', // For pug, EJS
-    users:userList,
-    activeTA03: true, // For HBS
-    contentCSS: true, // For HBS
-  });
-});
-
-
-
-
-
 
 
 

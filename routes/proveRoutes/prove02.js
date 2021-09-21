@@ -1,33 +1,41 @@
 const path = require('path');
-
 const express = require('express');
-
-// const rootDir = require('../proove02util/path');
-const { route } = require('../routes/ta02');
-
 const router = express.Router();
 
-//const products = []; //this is for the single array
-
-const products =[{}]; //this is for the objects
+const bodyParser = require('body-parser');
 
 
 
+const products =[{}]; 
+
+router.use(bodyParser({ extended: false }));
+
+//http://localhost:5000/prove02/admin/add-product
+
+router.get('/', (req, res, next) => {
+  res.render('pages/shop', {
+    prods: products,
+    pageTitle: 'Shop',
+    path: '/proveactivities/prove02',
+    hasProducts: products.length > 0,
+    activeShop: true,
+    productCSS: true
+  });
+});
 
 
-
-// /admin/add-product => GET
-router.get('/add-product', (req, res, next) => {
+router.get('/admin/add-product', (req, res, next) => {
   res.render('pages/p2add-product', {
     pageTitle: 'Add Product',
     path: '/admin/p2add-product',
-  
     activeAddProduct: true
   });
 });
 
-// /admin/add-product => POST
-router.post('/add-product', (req, res, next) => {
+
+router.post('/admin/add-product', (req, res, next) => {
+
+
   //products.push({ title: req.body.title });
   const title=req.body.title;
   const price=req.body.price;
@@ -35,12 +43,16 @@ router.post('/add-product', (req, res, next) => {
 
   const prodList={'id':Date.now(), 'title':title, 'price':price, 'description':desc};
     products.push(prodList);
-  res.redirect('/prove02');
+  res.redirect('/proveactivities/prove02');
+
+
+  
 });
 
 
 // /admin/add-product => GET
-router.get('/delete-product', (req, res, next) => {
+router.get('/admin/delete-product', (req, res, next) => {
+
   //console.log(products);
   res.render('pages/p2delete-product', {
     prods: products,
@@ -51,21 +63,9 @@ router.get('/delete-product', (req, res, next) => {
     
   });
 });
-
-
-
-
-
-
-
-router.post('/delete-product', (req, res, next) => {
-  //console.log(req.body.deleteProd);
+router.post('/admin/delete-product', (req, res, next) => {
 
   const removeIndex=req.body.deleteProd;
-  // console.log("remove Index",removeIndex);
-  // console.log(products);
-
-
   for(prod in products){
     if(removeIndex==products[prod].id){
       // console.log("nahanap ko na on Index", prod);
@@ -74,14 +74,7 @@ router.post('/delete-product', (req, res, next) => {
       
     }
   }
-
-
-  // products.splice(removeIndex, 1);
-  //res.redirect('/delete-product');
-  res.redirect('/prove02');
-
- 
-
+  res.redirect('/proveactivities/prove02');
 
 });
 
@@ -91,5 +84,4 @@ router.post('/delete-product', (req, res, next) => {
 
 
 
-exports.routes = router;
-exports.products = products;
+module.exports = router;
