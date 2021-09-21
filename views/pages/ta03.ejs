@@ -12,11 +12,26 @@
         <h1>
           <%= title %>
         </h1>
-        <p>This is the placeholder for Team Activity 03</p>
+        <p>To find product just add /find and name of product. example find/Awesome Fog Tech or just click the Product itself</p>
       </div>
     </div>
-    <div class="container">
+    <div class="ta03container">
 
+
+      <% for (let datas of data) { %>
+
+        <a href="/teamactivities/ta03/find/<%=datas.name%>">
+        <div class="ta03-c">
+        <img src="<%= datas.imageUrl %>" alt="<%= datas.tags %>" >
+        <span class="price">$<%= datas.price %></span>
+        <span class="title"><%= datas.name %></span>
+        <p class="price">$<%= datas.description %></p>
+      </div>
+      </a>
+
+    <%}%>
+
+     
     </div>
 
 
