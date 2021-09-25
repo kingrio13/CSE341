@@ -46,6 +46,10 @@ app
 
 
 
+
+
+
+  const mongoose=require('mongodb');
   const cors = require('cors') // Place this with other requires (like 'path' and 'express')
 
 const corsOptions = {
@@ -65,8 +69,12 @@ const options = {
 const MONGODB_URL = process.env.MONGODB_URL || "mongodb+srv://kingrio13:<password>@cluster0.mc5dh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 
+
+
+
+
 mongoose
-  .connect(
+.connect(
     MONGODB_URL, options
   )
   .then(result => {
