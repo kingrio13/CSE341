@@ -42,14 +42,17 @@ app
 
 
 
-  app.listen(PORT, () => console.log(`Listening on ${PORT}`));
+  //app.listen(PORT, () => console.log(`Listening on ${PORT}`));
 
 
 
 
 
 
-  const mongoose=require('mongodb');
+// const mongodb = require('mongodb');
+// const mongoose = mongodb.MongoClient;
+
+
   const cors = require('cors') // Place this with other requires (like 'path' and 'express')
 
 const corsOptions = {
@@ -66,21 +69,33 @@ const options = {
     family: 4
 };
 
-const MONGODB_URL = process.env.MONGODB_URL || "mongodb+srv://kingrio13:<password>@cluster0.mc5dh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+// const MONGODB_URL = process.env.MONGODB_URL || "mongodb+srv://kingrio13:mongodb1991@cluster0.mc5dh.mongodb.net/test?retryWrites=true&w=majority";
 
 
 
+// mongoose
+//   .connect(
+//     MONGODB_URL, options
+//   )
+//   .then(result => {
+//     console.log(result);
+//     app.listen(PORT);
+//   })
+//   .catch(err => {
+//     console.log(err);
+//   });
 
 
 
-mongoose
-.connect(
-    MONGODB_URL, options
-  )
-  .then(result => {
-      // This should be your user handling code implement following the course videos
-    app.listen(PORT);
-  })
-  .catch(err => {
-    console.log(err);
-  });
+const { MongoClient } = require('mongodb');
+const uri = "mongodb+srv://kingrio13:mongodb1991@cluster0.mc5dh.mongodb.net/test?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  //console.log(collection);
+  app.listen(PORT, () => console.log(`Listening on ${PORT}`));
+  console.log('connected');
+  // perform actions on the collection object
+  client.close();
+});
+
