@@ -2,8 +2,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-
-// const mongoConnect = require('./util/database').mongoConnect;
+const User = require('./models/prove04/user');
+const mongoose = require('mongoose');
 
 const PORT = process.env.PORT || 5000; // So we can run on heroku || (OR) localhost:5000
 
@@ -43,16 +43,6 @@ app
 
 
 
-
-
-
-
-
-
-
-
-
-
 const cors = require('cors') // Place this with other requires (like 'path' and 'express')
 
 const corsOptions = {
@@ -76,27 +66,27 @@ const MONGODB_URL = process.env.MONGODB_URL || "mongodb+srv://kingrio13:mongodb@
 
 
 
-const mongoose = require('mongoose');
 mongoose
-    .connect(MONGODB_URL, options)
-    .then(result => {
-        app.listen(PORT, () => {
-            console.info(`Store Server running on Port ${PORT}`);
-        })
-    })
-    .catch(err => {
-        console.error(err);
+  .connect(
+    MONGODB_URL, options
+  )
+  .then(result => {
+    User.findOne().then(user => {
+      if (!user) {
+        const user = new User({
+          name: 'rio',
+          email: 'rio@test.com',
+          cart: {
+            items: []
+          }
+        });
+        user.save();
+      }
     });
-
-
-
-
-
-
-
-// mongoConnect(() => {
-//   app.listen(3000);
-// });
-
+    app.listen(3000);
+  })
+  .catch(err => {
+    console.log(err);
+  });
 
 
