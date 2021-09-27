@@ -3,9 +3,22 @@ const MongoClient = mongodb.MongoClient;
 
 let _db;
 
+
+
+
+
+const options = {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+  family: 4
+};
+const MONGODB_URL = process.env.MONGODB_URL || "mongodb+srv://kingrio13:mongodb1991@cluster0.mc5dh.mongodb.net/test?retryWrites=true&w=majority";
+
+
 const mongoConnect = callback => {
   MongoClient.connect(
-    'mongodb+srv://kingrio13:mongodb1991@cluster0.mc5dh.mongodb.net/test?retryWrites=true&w=majority'
+    //'mongodb+srv://kingrio13:mongodb1991@cluster0.mc5dh.mongodb.net/test?retryWrites=true&w=majority'
+    MONGODB_URL, options
   )
     .then(client => {
       console.log('Connected!');

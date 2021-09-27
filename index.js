@@ -51,11 +51,9 @@ app
 
 
 
-// const mongodb = require('mongodb');
-// const mongoose = mongodb.MongoClient;
 
 
-  const cors = require('cors') // Place this with other requires (like 'path' and 'express')
+const cors = require('cors') // Place this with other requires (like 'path' and 'express')
 
 const corsOptions = {
     origin: "https://cse341projectrio.herokuapp.com/",
@@ -66,27 +64,22 @@ app.use(cors(corsOptions));
 const options = {
     useUnifiedTopology: true,
     useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
     family: 4
 };
 
-//app.listen(PORT, () => console.log(`Listening on ${PORT}`));
-
-mongoConnect(() => {
-  app.listen(3000);
-});
-
-// const MONGODB_URL = process.env.MONGODB_URL || "mongodb+srv://kingrio13:mongodb1991@cluster0.mc5dh.mongodb.net/test?retryWrites=true&w=majority";
 
 
+
+const MONGODB_URL = process.env.MONGODB_URL || "mongodb+srv://kingrio13:mongodb1991@cluster0.mc5dh.mongodb.net/test?retryWrites=true&w=majority";
+
+// const mongodb = require('mongodb');
+// const mongoose = mongodb.MongoClient;
 
 // mongoose
 //   .connect(
 //     MONGODB_URL, options
 //   )
 //   .then(result => {
-//     console.log(result);
 //     app.listen(PORT);
 //   })
 //   .catch(err => {
@@ -95,15 +88,13 @@ mongoConnect(() => {
 
 
 
-// const { MongoClient } = require('mongodb');
-// const uri = "mongodb+srv://kingrio13:mongodb1991@cluster0.mc5dh.mongodb.net/test?retryWrites=true&w=majority";
-// const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-// client.connect(err => {
-//   const collection = client.db("test").collection("devices");
-//   //console.log(collection);
-//   app.listen(PORT, () => console.log(`Listening on ${PORT}`));
-//   console.log('connected');
-//   // perform actions on the collection object
-//   client.close();
-// });
+
+
+
+
+mongoConnect(() => {
+  app.listen(3000);
+});
+
+
 
