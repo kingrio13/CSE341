@@ -3,7 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 
-const mongoConnect = require('./util/database').mongoConnect;
+// const mongoConnect = require('./util/database').mongoConnect;
 
 const PORT = process.env.PORT || 5000; // So we can run on heroku || (OR) localhost:5000
 
@@ -70,31 +70,33 @@ const options = {
 
 
 
-const MONGODB_URL = process.env.MONGODB_URL || "mongodb+srv://kingrio13:mongodb1991@cluster0.mc5dh.mongodb.net/test?retryWrites=true&w=majority";
-
-// const mongodb = require('mongodb');
-// const mongoose = mongodb.MongoClient;
-
-// mongoose
-//   .connect(
-//     MONGODB_URL, options
-//   )
-//   .then(result => {
-//     app.listen(PORT);
-//   })
-//   .catch(err => {
-//     console.log(err);
-//   });
+const MONGODB_URL = process.env.MONGODB_URL || "mongodb+srv://kingrio13:mongodb@cluster0.mc5dh.mongodb.net/test?retryWrites=true&w=majority";
 
 
 
 
 
+const mongoose = require('mongoose');
+mongoose
+    .connect(MONGODB_URL, options)
+    .then(result => {
+        app.listen(PORT, () => {
+            console.info(`Store Server running on Port ${PORT}`);
+        })
+    })
+    .catch(err => {
+        console.error(err);
+    });
 
 
-mongoConnect(() => {
-  app.listen(3000);
-});
+
+
+
+
+
+// mongoConnect(() => {
+//   app.listen(3000);
+// });
 
 
 

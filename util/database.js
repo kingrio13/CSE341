@@ -12,7 +12,7 @@ const options = {
   useNewUrlParser: true,
   family: 4
 };
-const MONGODB_URL = process.env.MONGODB_URL || "mongodb+srv://kingrio13:mongodb1991@cluster0.mc5dh.mongodb.net/test?retryWrites=true&w=majority";
+const MONGODB_URL = process.env.MONGODB_URL || "mongodb+srv://kingrio13:mongodb@cluster0.mc5dh.mongodb.net/test?retryWrites=true&w=majority";
 
 
 const mongoConnect = callback => {
