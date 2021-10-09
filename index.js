@@ -4,38 +4,13 @@ const bodyParser = require('body-parser');
 const path = require('path');
 
 
-const User = require('./models/prove04/user');
-const Product = require('./models/prove04/product');
-
-
-const mongoose = require('mongoose');
-
-
-
-const MONGODB_URL = process.env.MONGODB_URL || "mongodb+srv://kingrio13:UxBxg6zdjTsTy334@cluster0.mc5dh.mongodb.net/test?retryWrites=true&w=majority";
-
 
 
 
 const app = express();
 
-// Route setup. You can implement more in the future!
-// const ta01Routes = require('./routes/ta01');
-
-
-
-
-
 
 const routes = require('./routes');
-app.use((req, res, next) => {
-  User.findById('6152b121af45fb60f843e89d')
-    .then(user => {
-      req.user = user;
-      next();
-    })
-    .catch(err => console.log(err));
-});
 
 
 
@@ -85,27 +60,28 @@ const options = {
 
 
 
-mongoose
-  .connect(
-    MONGODB_URL, options
-  )
-  .then(result => {
-    User.findOne().then(user => {
-      if (!user) {
-        const user = new User({
-          name: 'rio',
-          email: 'rio@test.com',
-          cart: {
-            items: []
-          }
-        });
-        user.save();
-      }
-    });
-    app.listen(process.env.PORT || 5000);
-  })
-  .catch(err => {
-    console.log(err);
-  });
+// mongoose
+//   .connect(
+//     MONGODB_URL, options
+//   )
+//   .then(result => {
+//     User.findOne().then(user => {
+//       if (!user) {
+//         const user = new User({
+//           name: 'rio',
+//           email: 'rio@test.com',
+//           cart: {
+//             items: []
+//           }
+//         });
+//         user.save();
+//       }
+//     });
+//     app.listen(process.env.PORT || 5000);
+//   })
+//   .catch(err => {
+//     console.log(err);
+//   });
 
 
+  app.listen(process.env.PORT || 5000);
