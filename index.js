@@ -12,6 +12,11 @@ const mongoose = require('mongoose');
 
 
 
+const MONGODB_URL = process.env.MONGODB_URL || "mongodb+srv://kingrio13:UxBxg6zdjTsTy334@cluster0.mc5dh.mongodb.net/test?retryWrites=true&w=majority";
+
+
+
+
 const app = express();
 
 // Route setup. You can implement more in the future!
@@ -71,15 +76,10 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 const options = {
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-    family: 4
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+  family: 4
 };
-
-
-
-
-const MONGODB_URL = process.env.MONGODB_URL || "mongodb+srv://kingrio13:UxBxg6zdjTsTy334@cluster0.mc5dh.mongodb.net/test?retryWrites=true&w=majority";
 
 
 
