@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <% include ../includes/header.ejs %>
+</head>
+
+<body>
+  <% include ../includes/nav.ejs %>
+    <div class="jumbotron text-center">
+      <div class="container">
+        <h1>
+          <%= title %>
+        </h1>
+      
+        <p>To find product just add /find and name of product. example find/Awesome Fog Tech or just click the Product itself</p>
+      </div>
+    </div>
+    <div class="ta03container">
+
+
+      <% for (let datas of data) { %>
+
+        <a href="/proveactivities/prove08/find/<%=datas.name%>">
+        <div class="ta03-c">
+        <img src="<%= datas.imageUrl %>" alt="<%= datas.tags %>" >
+        <span class="price">$<%= datas.price %></span>
+        <span class="title"><%= datas.name %></span>
+        <p class="price">$<%= datas.description %></p>
+      </div>
+      </a>
+
+    <%}%>
+
+     
+    </div>
+
+
+
+    <nav aria-label="Page navigation">
+      <ul class="pagination">
+        
+
+        <% for(var i=1; i <=numPages; i++) { %>
+          <a href="?page=<%= i %>" class="btn <%= (page==i) ? 'btn-primary' : 'btn-default' %>">
+            <%= i %>
+          </a>
+          <% } %>
+
+        
+        <!-- for(let pages=1; pages<= numPages; pages++ )>
+        <li class="page-item"><a class="page-link" href="#"> pages </a></li>
+       } %>   -->
+
+
+      </ul>
+    </nav>
+
+</body>
+
+</html>

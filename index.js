@@ -2,19 +2,35 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+
+
 const User = require('./models/prove04/user');
+const Product = require('./models/prove04/product');
+
+
 const mongoose = require('mongoose');
 
-const PORT = process.env.PORT || 5000; // So we can run on heroku || (OR) localhost:5000
+
 
 const app = express();
 
 // Route setup. You can implement more in the future!
 // const ta01Routes = require('./routes/ta01');
+
+
+
+
+
+
 const routes = require('./routes');
-
-
-
+app.use((req, res, next) => {
+  User.findById('6152b121af45fb60f843e89d')
+    .then(user => {
+      req.user = user;
+      next();
+    })
+    .catch(err => console.log(err));
+});
 
 
 
@@ -43,6 +59,9 @@ app
 
 
 
+
+
+
 const cors = require('cors') // Place this with other requires (like 'path' and 'express')
 
 const corsOptions = {
@@ -60,7 +79,7 @@ const options = {
 
 
 
-const MONGODB_URL = process.env.MONGODB_URL || "mongodb+srv://kingrio13:mongodb@cluster0.mc5dh.mongodb.net/test?retryWrites=true&w=majority";
+const MONGODB_URL = process.env.MONGODB_URL || "mongodb+srv://kingrio13:UxBxg6zdjTsTy334@cluster0.mc5dh.mongodb.net/test?retryWrites=true&w=majority";
 
 
 
@@ -83,7 +102,7 @@ mongoose
         user.save();
       }
     });
-    app.listen(3000);
+    app.listen(process.env.PORT || 5000);
   })
   .catch(err => {
     console.log(err);
